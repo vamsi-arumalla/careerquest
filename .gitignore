@@ -1,0 +1,32 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+*.tfplan
+.terraform.lock.hcl
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# C# / .NET
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.lock.json
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+.env
+.env.local
+.DS_Store
+
+# Docker
+.dockerignore
