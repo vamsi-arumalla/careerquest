@@ -1,0 +1,325 @@
+﻿docker-compose : time
+="2026-02-06T02:17:25
+-05:00" 
+level=warning msg="C:
+\\Users\\Vamsi\\.gemi
+ni\\antigravity\\carr
+er quest\\docker-comp
+ose.yml: the 
+attribute `version` 
+is obsolete, it will 
+be ignored, please 
+remove it to avoid 
+potential confusion"
+At line:1 char:1
++ docker-compose up 
+-d --build > 
+build_log.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (time="2   
+ 026-02-0...tial     
+confusion":Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+ Image carrerquest-jo
+b-service Building 
+ Image carrerquest-ap
+plication-service 
+Building 
+ Image 
+carrerquest-frontend 
+Building 
+ Image carrerquest-us
+er-service Building 
+ Image carrerquest-se
+arch-service 
+Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.77kB done
+#1 DONE 0.0s
+
+#2 [user-service internal] load build definition from Dockerfile
+#2 transferring dockerfile: 619B 0.1s done
+#2 DONE 0.1s
+
+#3 [application-service internal] load build definition from Dockerfile
+#3 transferring dockerfile: 682B 0.0s done
+#3 DONE 0.2s
+
+#4 [search-service internal] load build definition from Dockerfile
+#4 transferring dockerfile: 637B 0.0s done
+#4 DONE 0.2s
+
+#5 [frontend internal] load build definition from Dockerfile
+#5 transferring dockerfile: 301B 0.0s done
+#5 WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 2)
+#5 DONE 0.2s
+
+#6 [job-service internal] load build definition from Dockerfile
+#6 transferring dockerfile: 610B 0.0s done
+#6 DONE 0.2s
+
+#7 [search-service internal] load metadata for mcr.microsoft.com/dotnet/aspnet:7.0
+#7 ...
+
+#8 [auth] library/nginx:pull token for registry-1.docker.io
+#8 DONE 0.0s
+
+#9 [auth] library/node:pull token for registry-1.docker.io
+#9 DONE 0.0s
+
+#7 [search-service internal] load metadata for mcr.microsoft.com/dotnet/aspnet:7.0
+#7 DONE 0.4s
+
+#10 [search-service internal] load metadata for mcr.microsoft.com/dotnet/sdk:7.0
+#10 DONE 0.5s
+
+#11 [application-service internal] load .dockerignore
+#11 transferring context: 2B done
+#11 DONE 0.0s
+
+#12 [frontend internal] load metadata for docker.io/library/nginx:alpine
+#12 ...
+
+#13 [job-service base 1/2] FROM mcr.microsoft.com/dotnet/aspnet:7.0@sha256:c7d9ee6cd01afe9aa80642e577c7cec9f5d87f88e5d70bd36fd61072079bc55b
+#13 resolve mcr.microsoft.com/dotnet/aspnet:7.0@sha256:c7d9ee6cd01afe9aa80642e577c7cec9f5d87f88e5d70bd36fd61072079bc55b 0.0s done
+#13 DONE 0.1s
+
+#14 [user-service build 1/7] FROM mcr.microsoft.com/dotnet/sdk:7.0@sha256:d32bd65cf5843f413e81f5d917057c82da99737cb1637e905a1a4bc2e7ec6c8d
+#14 resolve mcr.microsoft.com/dotnet/sdk:7.0@sha256:d32bd65cf5843f413e81f5d917057c82da99737cb1637e905a1a4bc2e7ec6c8d 0.0s done
+#14 DONE 0.1s
+
+#15 [application-service internal] load build context
+#15 transferring context: 22.28kB 0.1s done
+#15 DONE 0.1s
+
+#16 [search-service build 5/7] COPY . .
+#16 CACHED
+
+#17 [search-service build 3/7] COPY [SearchService/SearchService.csproj, SearchService/]
+#17 CACHED
+
+#18 [search-service build 4/7] RUN dotnet restore "SearchService/SearchService.csproj"
+#18 CACHED
+
+#19 [user-service build 4/7] RUN dotnet restore "UserService/UserService.csproj"
+#19 CACHED
+
+#20 [user-service build 3/7] COPY [UserService/UserService.csproj, UserService/]
+#20 CACHED
+
+#21 [user-service build 5/7] COPY . .
+#21 CACHED
+
+#22 [user-service build 6/7] WORKDIR /src/UserService
+#22 CACHED
+
+#23 [search-service build 6/7] WORKDIR /src/SearchService
+#23 CACHED
+
+#24 [job-service build 4/7] RUN dotnet restore "JobService/JobService.csproj"
+#24 CACHED
+
+#25 [job-service build 3/7] COPY [JobService/JobService.csproj, JobService/]
+#25 CACHED
+
+#26 [job-service build 5/7] COPY . .
+#26 CACHED
+
+#27 [job-service build 6/7] WORKDIR /src/JobService
+#27 CACHED
+
+#28 [application-service build 5/7] COPY . .
+#28 CACHED
+
+#29 [job-service build 2/7] WORKDIR /src
+#29 CACHED
+
+#30 [application-service build 3/7] COPY [ApplicationService/ApplicationService.csproj, ApplicationService/]
+#30 CACHED
+
+#31 [application-service build 4/7] RUN dotnet restore "ApplicationService/ApplicationService.csproj"
+#31 CACHED
+
+#32 [application-service build 6/7] WORKDIR /src/ApplicationService
+#32 CACHED
+
+#33 [application-service build 7/7] RUN dotnet build "ApplicationService.csproj" -c Release -o /app/build
+#33 ...
+
+#12 [frontend internal] load metadata for docker.io/library/nginx:alpine
+#12 DONE 0.9s
+
+#34 [frontend internal] load metadata for docker.io/library/node:18-alpine
+#34 DONE 0.9s
+
+#35 [frontend internal] load .dockerignore
+#35 transferring context: 2B done
+#35 DONE 0.0s
+
+#36 [frontend internal] load build context
+#36 DONE 0.0s
+
+#37 [frontend stage-1 1/2] FROM docker.io/library/nginx:alpine@sha256:5878d06ae4c83d73285438255f705bb3f9a736f41cd24876ed25bb33faf76c7d
+#37 resolve docker.io/library/nginx:alpine@sha256:5878d06ae4c83d73285438255f705bb3f9a736f41cd24876ed25bb33faf76c7d 0.0s done
+#37 CACHED
+
+#38 [frontend build 1/6] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#38 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
+#38 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.1s done
+#38 DONE 0.1s
+
+#39 [frontend build 2/6] WORKDIR /app
+#39 CACHED
+
+#36 [frontend internal] load build context
+#36 transferring context: 19.18MB 4.9s
+#36 ...
+
+#40 [job-service build 7/7] RUN dotnet build "JobService.csproj" -c Release -o /app/build
+#40 2.529 MSBuild version 17.7.6+77d58ec69 for .NET
+#40 ...
+
+#41 [user-service build 7/7] RUN dotnet build "UserService.csproj" -c Release -o /app/build
+#41 2.495 MSBuild version 17.7.6+77d58ec69 for .NET
+#41 10.19   Determining projects to restore...
+#41 ...
+
+#42 [search-service build 7/7] RUN dotnet build "SearchService.csproj" -c Release -o /app/build
+#42 2.523 MSBuild version 17.7.6+77d58ec69 for .NET
+#42 ...
+
+#40 [job-service build 7/7] RUN dotnet build "JobService.csproj" -c Release -o /app/build
+#40 10.44   Determining projects to restore...
+#40 ...
+
+#33 [application-service build 7/7] RUN dotnet build "ApplicationService.csproj" -c Release -o /app/build
+#33 2.509 MSBuild version 17.7.6+77d58ec69 for .NET
+#33 9.673   Determining projects to restore...
+#33 ...
+
+#36 [frontend internal] load build context
+#36 transferring context: 42.57MB 12.2s
+#36 transferring context: 44.34MB 17.3s
+#36 ...
+
+#42 [search-service build 7/7] RUN dotnet build "SearchService.csproj" -c Release -o /app/build
+#42 10.53   Determining projects to restore...
+#42 13.78   Restored /src/SearchService/SearchService.csproj (in 1.57 sec).
+#42 ...
+
+#36 [frontend internal] load build context
+#36 transferring context: 45.31MB 22.4s
+#36 ...
+
+#33 [application-service build 7/7] RUN dotnet build "ApplicationService.csproj" -c Release -o /app/build
+#33 13.08   Restored /src/ApplicationService/ApplicationService.csproj (in 1.87 sec).
+#33 ...
+
+#36 [frontend internal] load build context
+#36 ...
+
+#40 [job-service build 7/7] RUN dotnet build "JobService.csproj" -c Release -o /app/build
+#40 13.50   Restored /src/JobService/JobService.csproj (in 1.39 sec).
+#40 ...
+
+#36 [frontend internal] load build context
+#36 ...
+
+#41 [user-service build 7/7] RUN dotnet build "UserService.csproj" -c Release -o /app/build
+#41 14.10   Restored /src/UserService/UserService.csproj (in 1.67 sec).
+#41 23.98 /src/UserService/Program.cs(17,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+#41 23.99 /src/UserService/Program.cs(18,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+#41 23.99 /src/UserService/Program.cs(19,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+#41 ...
+
+#36 [frontend internal] load build context
+#36 ...
+
+#41 [user-service build 7/7] RUN dotnet build "UserService.csproj" -c Release -o /app/build
+#41 24.34 
+#41 24.34 Build FAILED.
+#41 24.34 
+#41 24.34 /src/UserService/Program.cs(17,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+#41 24.34 /src/UserService/Program.cs(18,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+#41 24.34 /src/UserService/Program.cs(19,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+#41 24.34     0 Warning(s)
+#41 24.34     3 Error(s)
+#41 24.34 
+#41 24.34 Time Elapsed 00:00:20.68
+#41 ERROR: process "/bin/sh -c dotnet build \"UserService.csproj\" -c Release -o /app/build" did not complete successfully: exit code: 1
+
+#36 [frontend internal] load build context
+#36 transferring context: 50.56MB 25.5s done
+#36 CANCELED
+
+#40 [job-service build 7/7] RUN dotnet build "JobService.csproj" -c Release -o /app/build
+#40 CANCELED
+
+#33 [application-service build 7/7] RUN dotnet build "ApplicationService.csproj" -c Release -o /app/build
+#33 CANCELED
+
+#42 [search-service build 7/7] RUN dotnet build "SearchService.csproj" -c Release -o /app/build
+#42 CANCELED
+------
+ > [user-service build 7/7] RUN dotnet build "UserService.csproj" -c Release -o /app/build:
+24.34 
+24.34 Build FAILED.
+24.34 
+24.34 /src/UserService/Program.cs(17,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+24.34 /src/UserService/Program.cs(18,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+24.34 /src/UserService/Program.cs(19,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/src/UserService/UserService.csproj]
+24.34     0 Warning(s)
+24.34     3 Error(s)
+24.34 
+24.34 Time Elapsed 00:00:20.68
+------
+Dockerfile:11
+
+--------------------
+
+   9 |     COPY . .
+
+  10 |     WORKDIR 
+"/src/UserService"
+
+  11 | >>> RUN 
+dotnet build 
+"UserService.csproj" 
+-c Release -o 
+/app/build
+
+  12 |     
+
+  13 |     FROM 
+build AS publish
+
+--------------------
+
+target user-service: 
+failed to solve: 
+process "/bin/sh -c 
+dotnet build \"UserSe
+rvice.csproj\" -c 
+Release -o 
+/app/build" did not 
+complete 
+successfully: exit 
+code: 1
+
+
+
+View build details: d
+ocker-desktop://dashb
+oard/build/default/de
+fault/ajrlgop93f70vuy
+piva5w57d3
+

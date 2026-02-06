@@ -1,0 +1,106 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15-alpine
+    container_name: career_quest_db_prod
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: careerquest
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: always
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.2
+    container_name: career_quest_es_prod
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - elasticsearch_data_prod:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    restart: always
+
+  job-service:
+    build:
+      context: ./backend/JobService
+      dockerfile: Dockerfile
+    container_name: career_quest_job_service_prod
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=database;Database=careerquest;Username=${DB_USER};Password=${DB_PASSWORD}
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - Jwt__Audience=${JWT_AUDIENCE}
+    ports:
+      - "8081:80"
+    depends_on:
+      - database
+    restart: always
+
+  user-service:
+    build:
+      context: ./backend/UserService
+      dockerfile: Dockerfile
+    container_name: career_quest_user_service_prod
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=database;Database=careerquest;Username=${DB_USER};Password=${DB_PASSWORD}
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - Jwt__Audience=${JWT_AUDIENCE}
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "8083:80"
+    depends_on:
+      - database
+    restart: always
+
+  application-service:
+    build:
+      context: ./backend/ApplicationService
+      dockerfile: Dockerfile
+    container_name: career_quest_app_service_prod
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=database;Database=careerquest;Username=${DB_USER};Password=${DB_PASSWORD}
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - Jwt__Audience=${JWT_AUDIENCE}
+    ports:
+      - "8082:80"
+    depends_on:
+      - database
+    restart: always
+
+  search-service:
+    build:
+      context: ./backend/SearchService
+      dockerfile: Dockerfile
+    container_name: career_quest_search_service_prod
+    environment:
+      - Elasticsearch__Uri=http://elasticsearch:9200
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__Issuer=${JWT_ISSUER}
+      - Jwt__Audience=${JWT_AUDIENCE}
+    ports:
+      - "8084:80"
+    depends_on:
+      - elasticsearch
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: career_quest_frontend_prod
+    ports:
+      - "80:80" # Nginx serves on 80
+    restart: always
+
+volumes:
+  postgres_data_prod:
+  elasticsearch_data_prod:
