@@ -1,57 +1,101 @@
 Career Quest
 
-Career Quest is a production-style, microservices-based job board platform built with ASP.NET Core 7 and React. It simulates how modern hiring systems operate at scale using isolated services, independent databases, full-text search, containerization, and infrastructure-as-code.
+Career Quest is a production-style, microservices-based job board platform built with ASP.NET Core 7 and React. It is designed to simulate how modern hiring systems operate at scale — with isolated services, independent databases, full-text search, containerized deployment, and infrastructure-as-code provisioning.
 
-The focus of this project is architecture, scalability, and cloud readiness — not just CRUD functionality.
+The goal of this project was not just to build a job board, but to design a system that reflects real-world backend architecture patterns used in scalable SaaS platforms.
 
-Architecture Overview
+🎯 Why I Built This
 
-The system is composed of independently deployable services:
+Most job board demos are monolithic and simplistic. I wanted to design a system that:
+
+Separates concerns across independently deployable services
+
+Uses database-per-service architecture
+
+Implements secure JWT-based authentication with role-based authorization
+
+Integrates Elasticsearch for production-grade search
+
+Is fully containerized and cloud-ready
+
+Can be provisioned in AWS using Terraform
+
+This project allowed me to explore distributed system design decisions, service communication, data ownership boundaries, and deployment automation.
+
+🏗 System Architecture
+
+The platform is composed of the following services:
 
 Service	Port	Responsibility	Storage
-Frontend	5173	React SPA	—
-UserService	8083	Authentication, JWT, RBAC	PostgreSQL
-JobService	8081	Job lifecycle management	PostgreSQL
-ApplicationService	8082	Candidate applications	PostgreSQL
-SearchService	8084	Full-text search	Elasticsearch
-Key Design Decisions
+Frontend	5173	React SPA (Candidates & Employers UI)	—
+UserService	8083	Identity Provider, JWT Auth, RBAC	PostgreSQL
+JobService	8081	Job CRUD & employer operations	PostgreSQL
+ApplicationService	8082	Candidate applications & tracking	PostgreSQL
+SearchService	8084	Search indexing & querying	Elasticsearch
+Architectural Highlights
 
-Database-per-service for data ownership and loose coupling
+Database per service to enforce data ownership boundaries.
 
-Stateless services for horizontal scalability
+JWT authentication issued by UserService with role-based access control.
 
-JWT-based authentication with role-based authorization
+SearchService decoupled from JobService and optimized for full-text queries.
 
-Search isolated from transactional workloads
+Dockerized environment for local orchestration.
 
-Dockerized for consistent local and production environments
+Terraform-based AWS infrastructure for production deployment.
 
-Terraform-managed AWS infrastructure
+🔐 Security Design
 
-Core Capabilities
+JWT-based authentication with role claims (Employer / Candidate)
 
-Employer job posting and management
+Protected endpoints with policy-based authorization
 
-Candidate job search and application flow
+Service-level validation and input sanitization
 
-Secure authentication and role enforcement
+Secure environment variable handling via Docker
 
-Elasticsearch-powered full-text search
+🔎 Search Implementation
 
-Cloud-ready deployment model
+The SearchService indexes job postings into Elasticsearch and enables:
 
-Tech Stack
+Full-text search
+
+Keyword-based filtering
+
+Fast query responses under high load
+
+Decoupled search layer from transactional database
+
+This mirrors how production systems separate write workloads from search workloads.
+
+🛠️ Tech Stack
 
 Backend
-ASP.NET Core 7, PostgreSQL, Elasticsearch, Docker
+
+ASP.NET Core 7
+
+PostgreSQL
+
+Elasticsearch
+
+Docker
 
 Frontend
-React, Tailwind CSS
+
+React
+
+Tailwind CSS
+
+Axios
 
 Infrastructure
-Docker Compose, Terraform (AWS-ready)
 
-Running Locally
+Docker Compose
+
+Terraform (AWS-ready)
+
+🚀 Running Locally
+Docker (Recommended)
 docker-compose up -d
 
 
@@ -59,26 +103,69 @@ Access:
 
 http://localhost:5173
 
-Production Deployment
+Manual Development
+
+Backend:
+
+Open solution in Visual Studio or VS Code
+
+Run via Docker Compose
+
+Frontend:
+
+cd frontend
+npm install
+npm run dev
+
+☁️ Production Deployment
+Docker Production Build
 docker-compose -f docker-compose.prod.yml up -d
 
-
-Infrastructure provisioning:
-
+AWS Infrastructure
 cd infrastructure
 terraform init
 terraform apply
 
-What This Project Demonstrates
 
-Distributed system design principles
+Infrastructure provisions:
 
-Microservices with independent data boundaries
+Networking (VPC, subnets)
+
+Container runtime
+
+Database instances
+
+Security groups
+
+IAM roles
+
+🧪 Test Credentials
+
+Create an account via:
+
+/signup
+
+
+Then:
+
+Post jobs as an Employer
+
+Apply as a Candidate
+
+Use the search bar to test Elasticsearch indexing
+
+📈 What This Project Demonstrates
+
+Distributed microservices design
+
+Service isolation and database ownership
 
 Secure authentication architecture
 
-Search system separation and scalability thinking
+Search indexing architecture
 
-Containerized development workflows
+Containerized environments
 
-Infrastructure-as-Code discipline
+Infrastructure-as-Code (Terraform)
+
+Cloud-ready backend engineering  
