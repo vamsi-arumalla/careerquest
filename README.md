@@ -1,65 +1,84 @@
-# Career Quest
+Career Quest
 
-Career Quest is a modern, microservices-based job board application designed to connect employers with candidates.
+Career Quest is a production-style, microservices-based job board platform built with ASP.NET Core 7 and React. It simulates how modern hiring systems operate at scale using isolated services, independent databases, full-text search, containerization, and infrastructure-as-code.
 
-## 🚀 Key Features
+The focus of this project is architecture, scalability, and cloud readiness — not just CRUD functionality.
 
-- **Microservices Architecture**: Built with ASP.NET Core 7.
-- **Modern Frontend**: React + Tailwind CSS.
-- **Advanced Search**: Powered by Elasticsearch.
-- **Secure**: JWT Authentication & Role-Based Access Control.
-- **Cloud Ready**: Dockerized and ready for AWS/Azure deployment.
+Architecture Overview
 
-## 🏗 Architecture
+The system is composed of independently deployable services:
 
-The system consists of the following services:
+Service	Port	Responsibility	Storage
+Frontend	5173	React SPA	—
+UserService	8083	Authentication, JWT, RBAC	PostgreSQL
+JobService	8081	Job lifecycle management	PostgreSQL
+ApplicationService	8082	Candidate applications	PostgreSQL
+SearchService	8084	Full-text search	Elasticsearch
+Key Design Decisions
 
-| Service | Port | Description |
-| :--- | :--- | :--- |
-| **Frontend** | `5173` | React SPA for users. |
-| **JobService** | `8081` | Manages job postings (PostgreSQL). |
-| **ApplicationService** | `8082` | Handles job applications (PostgreSQL). |
-| **UserService** | `8083` | Identity Provider & Auth (PostgreSQL). |
-| **SearchService** | `8084` | Search indexing and querying (Elasticsearch). |
+Database-per-service for data ownership and loose coupling
 
-## 🛠️ Getting Started
+Stateless services for horizontal scalability
 
-### Prerequisites
-- Docker Desktop
-- Node.js 18+
-- .NET 7 SDK
+JWT-based authentication with role-based authorization
 
-### Quick Start (Docker)
-Run the entire stack with a single command:
-```bash
+Search isolated from transactional workloads
+
+Dockerized for consistent local and production environments
+
+Terraform-managed AWS infrastructure
+
+Core Capabilities
+
+Employer job posting and management
+
+Candidate job search and application flow
+
+Secure authentication and role enforcement
+
+Elasticsearch-powered full-text search
+
+Cloud-ready deployment model
+
+Tech Stack
+
+Backend
+ASP.NET Core 7, PostgreSQL, Elasticsearch, Docker
+
+Frontend
+React, Tailwind CSS
+
+Infrastructure
+Docker Compose, Terraform (AWS-ready)
+
+Running Locally
 docker-compose up -d
-```
-Access the application at `http://localhost:5173`.
 
-### Local Development
-1. **Backend**: Open solution in Visual Studio/VS Code and run via `docker-compose`.
-2. **Frontend**:
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
 
-## 📦 Deployment
+Access:
 
-### Production Build
-```bash
+http://localhost:5173
+
+Production Deployment
 docker-compose -f docker-compose.prod.yml up -d
-```
 
-### AWS Infrastructure (Terraform)
-Infrastructure scripts are located in `infrastructure/`.
-```bash
+
+Infrastructure provisioning:
+
 cd infrastructure
 terraform init
 terraform apply
-```
 
-## 🧪 Testing Credentials
-- **Sign Up**: Create any account at `/signup`.
-- **Search**: Use the search bar to find indexed jobs.
+What This Project Demonstrates
+
+Distributed system design principles
+
+Microservices with independent data boundaries
+
+Secure authentication architecture
+
+Search system separation and scalability thinking
+
+Containerized development workflows
+
+Infrastructure-as-Code discipline
